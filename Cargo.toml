@@ -5,17 +5,11 @@ edition = "2021"
 authors = ["Skrity <skrityx@gmail.com>"]
 license = "MIT"
 description = "Hide console on windows for runtime multi-subsystem applications"
-repository = "https://github.com/Skrity/hide-console-ng"
-keywords = [
-    "windows",
-    "console",
-    "gui",
-    "cui",
-    "subsystem",
-    "windows_subsystem",
-]
+repository = "https://github.com/Skrity/hide_console_ng"
+keywords = ["windows", "console", "gui", "subsystem", "windows_subsystem"]
 categories = ["api-bindings", "os::windows-apis"]
 readme = "README.md"
+rust-version = "1.65"
 
 [dependencies]
 

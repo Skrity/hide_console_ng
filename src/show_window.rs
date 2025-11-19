@@ -9,7 +9,7 @@ fn is_explorer_exe(ascii: &[i8; 260]) -> bool {
     ascii[..explorer.len()]
         .iter()
         .zip(explorer.iter())
-        .all(|(lhs, rhs)| lhs.cast_unsigned() == *rhs)
+        .all(|(lhs, rhs)| *lhs as u8 == *rhs)
 }
 
 /// Perform an action on a console attached to our process.

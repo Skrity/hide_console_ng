@@ -4,6 +4,8 @@ use crate::windows_bindings::{
     PROCESSENTRY32, TH32CS_SNAPPROCESS, TRUE,
 };
 
+use core::mem::size_of;
+use core::ptr::addr_of_mut;
 /// Creates snapshot and keeps a handle to it
 ///
 /// This object will keep windows resource handle, and release it at [`Drop`]
@@ -42,7 +44,7 @@ impl ProcSnapshot {
     /// Use to find a process via closure
     pub fn find(mut self, predicate: impl Fn(&PROCESSENTRY32) -> bool) -> Option<PROCESSENTRY32> {
         // Safety: snapshot is valid by construction, buffer is created from reference so is valid
-        if (unsafe { Process32First(self.snapshot, &raw mut self.entry_buf) } != TRUE) {
+        if (unsafe { Process32First(self.snapshot, addr_of_mut!(self.entry_buf)) } != TRUE) {
             return None;
         }
         loop {
@@ -50,7 +52,7 @@ impl ProcSnapshot {
                 return Some(self.entry_buf);
             }
             // Safety: snapshot is valid by construction, buffer is created from reference so is valid
-            if unsafe { Process32Next(self.snapshot, &raw mut self.entry_buf) } != TRUE {
+            if unsafe { Process32Next(self.snapshot, addr_of_mut!(self.entry_buf)) } != TRUE {
                 break;
             }
         }
