@@ -1,0 +1,24 @@
+[package]
+name = "hide_console_ng"
+version = "0.1.0"
+edition = "2021"
+authors = ["Skrity <skrityx@gmail.com>"]
+license = "MIT"
+description = "Hide console on windows for runtime multi-subsystem applications"
+repository = "https://github.com/Skrity/hide-console-ng"
+keywords = [
+    "windows",
+    "console",
+    "gui",
+    "cui",
+    "subsystem",
+    "windows_subsystem",
+]
+categories = ["api-bindings", "os::windows-apis"]
+readme = "README.md"
+
+[dependencies]
+
+[package.metadata.docs.rs]
+default-target = "x86_64-pc-windows-gnu"
+targets = []
